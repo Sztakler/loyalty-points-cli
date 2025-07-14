@@ -1,9 +1,10 @@
-import { test, expect, spyOn, beforeAll, afterEach } from "bun:test";
+import { test, expect, spyOn, afterEach, beforeEach } from "bun:test";
 import { PointsStore } from "../../src/store/PointsStore.ts";
+import * as logger from "../../src/utils/logger";
 
 let store: PointsStore;
 
-beforeAll(() => {
+beforeEach(() => {
   store = new PointsStore();
 });
 
@@ -130,7 +131,7 @@ test("redeem throws an error for NaN points", () => {
 });
 
 test("warns when balance drops below 10 after redemption", () => {
-  const warnSpy = spyOn(console, "warn");
+  const warnSpy = spyOn(logger, "warning");
 
   store.earn("user789", 15);
   store.redeem("user789", 10);
@@ -143,7 +144,7 @@ test("warns when balance drops below 10 after redemption", () => {
 });
 
 test("does not warn when balance is 10 or above after redemption", () => {
-  const warnSpy = spyOn(console, "warn");
+  const warnSpy = spyOn(logger, "warning");
 
   store.earn("user789", 50);
   store.redeem("user789", 40);
@@ -155,7 +156,7 @@ test("does not warn when balance is 10 or above after redemption", () => {
 });
 
 test("does not warn when initial balance is already below 10 and no redemption", () => {
-  const warnSpy = spyOn(console, "warn");
+  const warnSpy = spyOn(logger, "warning");
 
   store.earn("user123", 5);
 

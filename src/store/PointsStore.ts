@@ -1,3 +1,5 @@
+import * as logger from "../utils/logger";
+
 export class PointsStore {
   private balances = new Map<string, number>();
   private lowBalanceThreshold = 10;
@@ -42,7 +44,7 @@ export class PointsStore {
 
     const currentBalance = this.getBalance(customerID);
     if (currentBalance < this.lowBalanceThreshold)
-      console.warn(
+      logger.warning(
         `Warning: Customer ${customerID} has a low balance: ${currentBalance} points`,
       );
     return true;
