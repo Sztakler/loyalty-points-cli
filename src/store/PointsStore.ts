@@ -14,7 +14,7 @@ export class PointsStore {
       isNaN(points) ||
       !Number.isInteger(points)
     )
-      throw new Error("Number of points earned must be a positive number.");
+      throw new Error("Number of points earned must be a positive integer.");
   }
 
   getBalance(customerID: string): number {
