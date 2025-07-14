@@ -14,18 +14,27 @@ try {
 
   switch (command.type) {
     case "earn":
-      store.earn(command.customerID, command.points);
+      store.earn(command.customerId, command.points);
       console.log(
-        `Successfully added ${command.points} points to ${command.customerID}.`,
+        `Successfully added ${command.points} points to ${command.customerId}.`,
       );
       console.log(
-        `Current balance for ${command.customerID}: ${store.getBalance(command.customerID)} points.`,
+        `Current balance for ${command.customerId}: ${store.getBalance(command.customerId)} points.`,
       );
       break;
     case "redeem":
-      const success = store.redeem(command.customerID, command.points);
+      const success = store.redeem(command.customerId, command.points);
       if (success) {
+        console.log(
+          `Successfully redeemed ${command.points} points from ${command.customerId}.`,
+        );
+        console.log(
+          `Current balance for ${command.customerId}: ${store.getBalance(command.customerId)} points.`,
+        );
       } else {
+        console.error(
+          `Failed to redeem ${command.points} from ${command.customerId}. Insufficient balance.`,
+        );
       }
       break;
     case "help":

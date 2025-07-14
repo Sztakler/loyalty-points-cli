@@ -2,13 +2,13 @@ export type CommandType = "earn" | "redeem" | "help";
 
 export interface ParsedEarnCommand {
   type: "earn";
-  customerID: string;
+  customerId: string;
   points: number;
 }
 
 export interface ParsedRedeemCommand {
   type: "redeem";
-  customerID: string;
+  customerId: string;
   points: number;
 }
 
@@ -35,13 +35,13 @@ export class ArgumentParser {
     }
 
     const command = args[0];
-    const customerID = args[1];
+    const customerId = args[1];
     const pointsString = args[2];
 
     if (command === "earn" || command === "redeem") {
-      if (!customerID || customerID.trim() === "") {
+      if (!customerId || customerId.trim() === "") {
         throw new ArgumentParsingError(
-          `Missing customer ID for '${command}' command. Usage: ${command} <customerID> <points>`,
+          `Missing customer Id for '${command}' command. Usage: ${command} <customerId> <points>`,
         );
       }
       if (!pointsString) {
@@ -50,15 +50,9 @@ export class ArgumentParser {
         );
       }
 
-      let points: number;
-      try {
-        points = parseInt(pointsString, 10);
-        if (isNaN(points) || !Number.isInteger(points) || points <= 0) {
-          throw new ArgumentParsingError(
-            `Invalid points value for '${command}' command. Points must be a positive integer.`,
-          );
-        }
-      } catch (e) {
+      let points = parseInt(pointsString);
+
+      if (isNaN(points) || !Number.isInteger(points) || points <= 0) {
         throw new ArgumentParsingError(
           `Invalid points value for '${command}' command. Points must be a positive integer.`,
         );
@@ -66,13 +60,13 @@ export class ArgumentParser {
 
       if (args.length !== 3) {
         throw new ArgumentParsingError(
-          `Invalid number of arguments for '${command}' command. Usage: ${command} <customerID> <points>`,
+          `Invalid number of arguments for '${command}' command. Usage: ${command} <customerId> <points>`,
         );
       }
       if (command == "earn") {
-        return { type: "earn", customerID, points };
+        return { type: "earn", customerId, points };
       }
-      return { type: "redeem", customerID, points };
+      return { type: "redeem", customerId, points };
     }
 
     throw new ArgumentParsingError(
