@@ -4,20 +4,36 @@ export class PointsStore {
 
   getBalance(customerID: string): number {
     if (!customerID || customerID.trim() === "")
-      throw new Error("Customer ID cannot be empty or null");
+      throw new Error("Customer ID cannot be empty or null.");
     return this.balances.get(customerID) ?? 0;
   }
 
   earn(customerID: string, points: number) {
     if (!customerID || customerID.trim() === "")
-      throw new Error("Customer ID cannot be empty or null");
+      throw new Error("Customer ID cannot be empty or null.");
+    if (
+      points <= 0 ||
+      typeof points !== "number" ||
+      isNaN(points) ||
+      !Number.isInteger(points)
+    )
+      throw new Error("Number of points earned must be a positive number.");
+
     const currentPoints = this.getBalance(customerID);
     this.balances.set(customerID, currentPoints + points);
   }
 
   redeem(customerID: string, points: number) {
     if (!customerID || customerID.trim() === "")
-      throw new Error("Customer ID cannot be empty or null");
+      throw new Error("Customer ID cannot be empty or null.");
+    if (
+      points <= 0 ||
+      typeof points !== "number" ||
+      isNaN(points) ||
+      !Number.isInteger(points)
+    )
+      throw new Error("Number of points earned must be a positive number.");
+
     const currentPoints = this.getBalance(customerID);
 
     if (currentPoints < points) return false;
