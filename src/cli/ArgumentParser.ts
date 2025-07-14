@@ -50,7 +50,7 @@ export class ArgumentParser {
         );
       }
 
-      let points = parseInt(pointsString);
+      let points = Number(pointsString);
 
       if (isNaN(points) || !Number.isInteger(points) || points <= 0) {
         throw new ArgumentParsingError(
