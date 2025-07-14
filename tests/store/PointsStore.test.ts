@@ -1,5 +1,5 @@
 import { test, expect, spyOn, beforeAll, afterEach } from "bun:test";
-import { PointsStore } from "../src/store/PointsStore.ts";
+import { PointsStore } from "../../src/store/PointsStore.ts";
 
 let store: PointsStore;
 
