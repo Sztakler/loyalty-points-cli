@@ -19,7 +19,7 @@ try {
       logger.success(
         `Successfully added ${command.points} points to ${command.customerId}.`,
       );
-      logger.success(
+      logger.info(
         `Current balance for ${command.customerId}: ${store.getBalance(command.customerId)} points.`,
       );
       break;
@@ -29,7 +29,7 @@ try {
         logger.success(
           `Successfully redeemed ${command.points} points from ${command.customerId}.`,
         );
-        logger.success(
+        logger.info(
           `Current balance for ${command.customerId}: ${store.getBalance(command.customerId)} points.`,
         );
       } else {
@@ -45,7 +45,7 @@ try {
 } catch (e: any) {
   if (e instanceof ArgumentParsingError) {
     logger.error(`CLI Argument Error: ${e.message}`);
-    logger.success("For usage information, run: bun run index.ts help");
+    logger.info("For usage information, run: bun run index.ts help");
   } else if (e instanceof Error) {
     logger.error(`Application Logic Error: ${e.message}`);
   } else {
@@ -55,18 +55,18 @@ try {
 }
 
 function printUsage(): void {
-  logger.success("Loyalty Points Application CLI");
-  logger.success("\nUsage:");
-  logger.success(
+  logger.info("Loyalty Points Application CLI");
+  logger.info("\nUsage:");
+  logger.info(
     "  bun run index.ts earn <customerId> <points>   - Add points to a customer.",
   );
-  logger.success(
+  logger.info(
     "  bun run index.ts redeem <customerId> <points> - Redeem points from a customer.",
   );
-  logger.success(
+  logger.info(
     "  bun run index.ts help                         - Show this help message.",
   );
-  logger.success("\nExamples:");
-  logger.success("  bun run index.ts earn user123 100");
-  logger.success("  bun run index.ts redeem user456 25");
+  logger.info("\nExamples:");
+  logger.info("  bun run index.ts earn user123 100");
+  logger.info("  bun run index.ts redeem user456 25");
 }
