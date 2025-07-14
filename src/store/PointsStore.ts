@@ -2,15 +2,12 @@ export class PointsStore {
   private balances = new Map<string, number>();
   private lowBalanceThreshold = 10;
 
-  getBalance(customerID: string): number {
+  private validateCustomerID(customerID: string) {
     if (!customerID || customerID.trim() === "")
       throw new Error("Customer ID cannot be empty or null.");
-    return this.balances.get(customerID) ?? 0;
   }
 
-  earn(customerID: string, points: number) {
-    if (!customerID || customerID.trim() === "")
-      throw new Error("Customer ID cannot be empty or null.");
+  private validatePoints(points: number) {
     if (
       points <= 0 ||
       typeof points !== "number" ||
@@ -18,21 +15,24 @@ export class PointsStore {
       !Number.isInteger(points)
     )
       throw new Error("Number of points earned must be a positive number.");
+  }
+
+  getBalance(customerID: string): number {
+    this.validateCustomerID(customerID);
+    return this.balances.get(customerID) ?? 0;
+  }
+
+  earn(customerID: string, points: number) {
+    this.validateCustomerID(customerID);
+    this.validatePoints(points);
 
     const currentPoints = this.getBalance(customerID);
     this.balances.set(customerID, currentPoints + points);
   }
 
   redeem(customerID: string, points: number) {
-    if (!customerID || customerID.trim() === "")
-      throw new Error("Customer ID cannot be empty or null.");
-    if (
-      points <= 0 ||
-      typeof points !== "number" ||
-      isNaN(points) ||
-      !Number.isInteger(points)
-    )
-      throw new Error("Number of points earned must be a positive number.");
+    this.validateCustomerID(customerID);
+    this.validatePoints(points);
 
     const currentPoints = this.getBalance(customerID);
 
