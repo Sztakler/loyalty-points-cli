@@ -19,7 +19,7 @@ export class PointsStore {
    */
   private validateCustomerId(customerId: string) {
     if (!customerId || customerId.trim() === "")
-      throw new Error("Customer Id cannot be empty or null.");
+      throw new Error("Customer id cannot be empty or null.");
   }
 
   /**

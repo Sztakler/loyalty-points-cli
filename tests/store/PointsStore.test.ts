@@ -16,15 +16,15 @@ test("getBalance returns 0 for non-existent customer", () => {
   expect(store.getBalance("nonExistentUser")).toBe(0);
 });
 
-test("getBalance throws an error for an empty customerID", () => {
+test("getBalance throws an error for an empty customerId", () => {
   expect(() => store.getBalance("")).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
 
-test("getBalance throws an error for customer ID with only whitespace", () => {
+test("getBalance throws an error for customer id with only whitespace", () => {
   expect(() => store.getBalance("   ")).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
 
@@ -39,15 +39,15 @@ test("earn accumulates points for the same user", () => {
   expect(store.getBalance("user123")).toBe(110);
 });
 
-test("earn throws an error for empty customer ID", () => {
+test("earn throws an error for empty customer id", () => {
   expect(() => store.earn("", 100)).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
 
-test("earn throws an error for customer ID with only whitespace", () => {
+test("earn throws an error for customer id with only whitespace", () => {
   expect(() => store.earn("   ", 100)).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
 
@@ -94,14 +94,14 @@ test("redeem returns false if not enough points", () => {
   expect(store.getBalance("user789")).toBe(15);
 });
 
-test("redeem throws an error for empty customer ID", () => {
+test("redeem throws an error for empty customer id", () => {
   expect(() => store.redeem("", 10)).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
-test("redeem throws an error for customer ID with only whitespaces", () => {
+test("redeem throws an error for customer id with only whitespaces", () => {
   expect(() => store.redeem("   ", 10)).toThrow(
-    "Customer ID cannot be empty or null.",
+    "Customer id cannot be empty or null.",
   );
 });
 test("redeem throws an error for zero points", () => {
