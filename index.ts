@@ -54,6 +54,11 @@ try {
   process.exit(1);
 }
 
+/**
+ * @function printUsage
+ * @description Displays the CLI application's usage instructions and available commands.
+ * It utilizes the `logger` utility for consistent and styled output.
+ */
 function printUsage(): void {
   logger.info("Loyalty Points Application CLI");
   logger.info("\nUsage:");
