@@ -1,14 +1,14 @@
-# loyalty-points-cli
+# loyalty-points-cli ✨
 
 This is a very simple CLI application used for managing loyalty points between users written using TypeScript and Bun.js. It allows for running commands in terminal or writing scripts using code API.
 
-## Installing dependencies
+## Installing dependencies 📦
 
 ```bash
 bun install
 ```
 
-## Running the application
+## Running the application 🚀
 
 ```bash
 bun run index.ts <command> <argument>
@@ -67,7 +67,7 @@ Example:
 bun run index.ts redeem customerA 100
 ```
 
-## Error handling
+## Error handling 🚨
 
 The application includes robust error handling for invalid commands or arguments. If provided with incorrect input, it responds with a descriptive error message.
 
@@ -78,7 +78,7 @@ bun run index.ts redeem customerC abc # Non-numeric points
 bun run index.ts invalidCommand      # Unknown command
 ```
 
-## Running tests
+## Running tests 🧪
 
 Comprehensive unit tests are defined to ensure that business logic and argument parsing work as expected. Tests are configured to run automatically via GitHub Actions on each `push` and `pull request`, providing a basic CI.
 
@@ -86,6 +86,3 @@ To run all tests locally using Bun:
 ```
   bun test
 ```
-
-This project was created using `bun init` in bun v1.2.11. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-
